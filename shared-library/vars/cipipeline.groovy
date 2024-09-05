@@ -33,7 +33,6 @@ def call() {
             }
 
             stage('Release') {
-                sh 'env'
                 steps {
                     echo 'Hello World'
                 }
