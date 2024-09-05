@@ -36,11 +36,9 @@ def call() {
             }
 
             stage('Release') {
-                when {
-                    expression { TAG_NAME ==~ ".*" }
-                }
-                steps {
 
+                steps {
+                    sh 'env'
                     echo 'Hello World'
                 }
             }
