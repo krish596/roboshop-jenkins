@@ -12,24 +12,14 @@ def call() {
             }
 
             stage('Test') {
-                when {
-                    allOf {
-                        expression { BRANCH_NAME != null }
-                        expression { TAG_NAME == null }
-                    }
-                }
+
                 steps {
                     echo 'Hello World'
                 }
             }
 
             stage('Code Quality') {
-                when {
-                    allOf {
-                        expression { BRANCH_NAME != null }
-                        expression { TAG_NAME == null }
-                    }
-                }
+
                 steps {
                     echo 'Hello World'
 
