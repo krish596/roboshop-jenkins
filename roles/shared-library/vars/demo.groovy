@@ -17,7 +17,13 @@ pipeline {
 
         stage('Code Quality') {
             steps {
-                echo 'Hello World'
+               // echo 'Hello World'
+
+                script {
+                    log.info 'Starting'
+                    log.warning 'Nothing to do!'
+                }
+
             }
         }
 
