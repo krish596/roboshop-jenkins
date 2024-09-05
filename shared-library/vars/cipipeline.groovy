@@ -2,7 +2,7 @@ def call() {
     node('workstation') {
 
         sh "find . | sed '1d' |xargs rm -rf "
-        git branch: 'main', url: 'https://github.com/krish596/${component}'
+        git branch: 'main', url: "https://github.com/krish596/${component}"
         stage('Compile Code') {
             common.compile()
 
