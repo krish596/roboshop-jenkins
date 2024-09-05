@@ -5,18 +5,28 @@ def call() {
 
         stages {
             stage('Compile Code') {
+
                 steps {
                     sh 'env'
                 }
             }
 
             stage('Test') {
+                when {
+                    expression { BRANCH_NAME ==~ ".*" }
+                }
                 steps {
                     echo 'Hello World'
                 }
             }
 
             stage('Code Quality') {
+                when {
+                    allOf {
+                        expression { BRANCH_NAME ==~ ".*" }
+                        expression { TAG_NAME !=~ ".*" }
+                    }
+                }
                 steps {
                     echo 'Hello World'
 
