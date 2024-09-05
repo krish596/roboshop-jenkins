@@ -40,7 +40,7 @@ def call() {
                     expression { TAG_NAME ==~ ".*" }
                 }
                 steps {
-                    sh 'env'
+
                     echo 'Hello World'
                 }
             }
