@@ -23,8 +23,8 @@ def call() {
             stage('Code Quality') {
                 when {
                     allOf {
-                        expression { BRANCH_NAME ==~ ".*" }
-                        expression { TAG_NAME !=~ ".*" }
+                        expression { BRANCH_NAME != null }
+                        expression { TAG_NAME == null }
                     }
                 }
                 steps {
