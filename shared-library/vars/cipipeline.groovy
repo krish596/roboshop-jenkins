@@ -1,6 +1,6 @@
 def call() {
     node('workstation') {
-        sh "find . | sed -e '1d' |xvars rm -rf "
+        sh "find . | sed -e '1d' |xargs rm -rf "
         stage('Compile Code') {
             common.compile()
         }
