@@ -1,7 +1,6 @@
 def call() {
     node('workstation') {
         sh "find . | sed -e '1d' |xargs rm -rf "
-        sh 'env'
 
         if(env.TAG_NAME ==~ ".*") {
             env.branch_name = "refs/tags/${env.TAG_NAME}"
@@ -11,7 +10,7 @@ def call() {
 
         checkout scmGit(
                 branches: [[name: branch_name]],
-                userRemoteConfigs: [[url: "https://github.com/krish596/${component}"]]
+                userRemoteConfigs: [[url: 'https://github.com/jenkinsci/git-plugin.git']]
         )
 
         stage('Compile Code') {
