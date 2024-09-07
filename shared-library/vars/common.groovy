@@ -6,11 +6,11 @@ def compile() {
         }
 
         if (env.codeType == "nodejs") {
-            print 'NodeJs'
+            sh 'npm install'
         }
 
         if (env.codeType == "python") {
-            print 'Python'
+            return "Return as python dont need to Compilation"
         }
 
         if (env.codeType == "static") {
