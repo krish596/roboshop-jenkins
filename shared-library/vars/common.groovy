@@ -13,11 +13,6 @@ def compile() {
             sh 'npm install'
         }
 
-
-
-        if (env.codeType == "static") {
-            print 'Static'
-        }
     }
 
 }
