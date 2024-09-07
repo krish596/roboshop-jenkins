@@ -13,34 +13,23 @@ def call() {
                 userRemoteConfigs: [[url: "https://github.com/krish596/${component}"]]
         )
 
-        stage('Compile Code') {
+        if(env.TAG_NAME ==~ ".*") {
             common.compile()
-        }
-
-        if(env.TAG_NAME == null) {
-            stage('Test') {
-                print 'Hello'
+            common.release()
+        } else {
+            if(env.BRANCH_NAME == "main") {
+                common.compile()
+                common.test()
+                common.codeQuality()
+                common.codeSecurity()
+            } else {
+                common.compile()
+                common.test()
+                common.codeQuality()
             }
-
-            stage('Code Quality') {
-                print 'Hello'
-            }
         }
 
 
-
-
-
-
-
-
-        stage('Code Security') {
-            print 'Hello'
-        }
-
-        stage('Release') {
-            print 'Hello'
-        }
     }
 }
 
