@@ -1,4 +1,8 @@
 def compile() {
+    if (env.codeType == "python") {
+        return "Return as python dont need to Compilation"
+    }
+
     stage('Compile Code'){
 
         if (env.codeType == "maven") {
@@ -9,9 +13,7 @@ def compile() {
             sh 'npm install'
         }
 
-        if (env.codeType == "python") {
-            return "Return as python dont need to Compilation"
-        }
+
 
         if (env.codeType == "static") {
             print 'Static'
