@@ -17,18 +17,16 @@ def call() {
             common.compile()
         }
 
-        if(env.TAG_NAME ==~ ".*") {
-            print 'NULL'
-        } else {
-            print 'NOTNULL'
+        if(env.TAG_NAME == null) {
+            stage('Test') {
+                print 'Hello'
+            }
         }
 
 
-        //if(env.BRANCH_NAME ==~ ".*" && env.TAG_NAME == null)
 
-        stage('Test') {
-            print 'Hello'
-        }
+
+
 
         stage('Code Quality') {
             print 'Hello'
