@@ -28,7 +28,7 @@ def test() {
         }
 
         if (env.codeType == "python") {
-            sh 'python -m unittest'
+            sh 'python3.6 -m unittest'
         }
     }
 }
