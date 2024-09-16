@@ -2,6 +2,9 @@ def call() {
     pipeline {
         agent any
 
+        environment {
+            SSH = credentials('centos-ssh')
+        }
         parameters {
             string(name: 'COMPONENT', defaultValue: '', description: 'Which Component to Deploy')
             string(name: 'VERSION', defaultValue: '', description: 'Which Version to Deploy')
@@ -22,7 +25,7 @@ def call() {
                 steps {
                     sh '''
                         aws ec2 describe-instances --filters "Name=tag:Name,Values=${ENV}-${COMPONENT}" --query 'Reservations[*].Instances[*].PrivateIpAddress' --output text >inv
-                        ansible-playbook -i inv main.yml -e component=${COMPONENT} -e env=${ENV}
+                        ansible-playbook -i inv main.yml -e component=${COMPONENT} -e env=${ENV} -e ansible_user=${SSH_USER} -e ansible_password=${SSH_PSW}
 '''
 
 
