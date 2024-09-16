@@ -21,7 +21,7 @@ def call() {
             stage('Deploy') {
                 steps {
                     sh '''
-                        aws ec2 describe-instances --filters "Name=tag:Name,Values=${ENV}-${COMPONENT} --query 'Reservations[*].Instances[*].{Instance:PrivateIpAddress}' --output text >inv
+                        aws ec2 describe-instances --filters "Name=tag:Name,Values=${ENV}-${COMPONENT}" --query 'Reservations[*].Instances[*].PrivateIpAddress' --output text >inv
                         ansible-playbook -i inv main.yml -e component=${COMPONENT} -e env=${ENV}
 '''
 
