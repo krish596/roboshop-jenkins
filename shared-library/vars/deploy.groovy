@@ -9,9 +9,22 @@ def call() {
         }
 
         stages {
-            stage(Deploy) {
+
+            stage('Parametr Store') {
                 steps {
-                    echo 'Ok'
+                    sh '''
+                      aws ssm put-parameter --name "${COMPONENT}.${ENV}.appVersion" --type "String" --value "${VERSION}" --overwrite
+'''
+                }
+            }
+
+            stage('Deploy') {
+                steps {
+                    sh '''
+                      aws ec2 describe-instances     --filters "Name=tag:Name,Values=prod-cart" --query 'Reservations[*].Instances[*].{Instance:PrivateIpAddress}' --output text >inv
+                      
+                      ansible-playbook -i inv main.yml -e component=${COMPONENT} -e env=${ENV}
+'''
                 }
             }
         }
