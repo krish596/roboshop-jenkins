@@ -5,6 +5,11 @@ def call() {
         environment {
             SSH = credentials('centos-ssh')
         }
+
+        options {
+            ansiColor('xterm')
+        }
+
         parameters {
             string(name: 'COMPONENT', defaultValue: '', description: 'Which Component to Deploy')
             string(name: 'VERSION', defaultValue: '', description: 'Which Version to Deploy')
