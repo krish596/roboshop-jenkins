@@ -25,6 +25,8 @@ def call() {
                       
                       ansible-playbook -i inv main.yml -e component=${COMPONENT} -e env=${ENV}
 '''
+
+
                 }
             }
         }
